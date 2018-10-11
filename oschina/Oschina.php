@@ -3,15 +3,16 @@ namespace extend\oauth;
 /**
  * bool
  * 30024167@qq.com
- * Gitee oauth登陆
- * https://gitee.com/api/v5/oauth_doc
+ * oschina oauth登陆
+ * https://www.oschina.net/openapi
  * https://gitee.com/oauth/applications/1148
  */
 class Gitee
 {
+    protected $url              =   'https://www.oschina.net/action/openapi/';
 	protected $client_id		=	'ada13e081d010bde17';
 	protected $client_secret	=	'45a66fafbf43c5769fa';
-	protected $redirect_uri		=	'http://www.hengtonghui.cn';
+    protected $redirect_uri     =   'http://www.hengtonghui.cn';
 
 	function __construct(){
 	}
@@ -24,13 +25,13 @@ class Gitee
 
 	// 第一步:获取 access_token 地址
 	public function get_access_token($code){
-		$url = "https://gitee.com/oauth/token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$redirect_uri}&client_secret={$this->client_secret}";
+        $url = $this->url."token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$redirect_uri}&client_secret={$this->client_secret}";
 		return $this->curl_post($url);
 	}
 
 	// 第二步:获取用户信息
 	public function get_userinfo($token){
-		$url = 'https://gitee.com/api/v5/user?access_token='.$token;
+        $url = $this->url.'action/openapi/user?access_token'=.$token;
 		return json_decode( $this->curl_get($url), true);
 	}
 

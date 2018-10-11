@@ -3,7 +3,7 @@ namespace extend\oauth;
 /**
  * bool
  * 30024167@qq.com
- * Github oath登陆
+ * Github oauth登陆
  * https://github.com/settings/developers
  */
 class Github
