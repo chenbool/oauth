@@ -3,8 +3,9 @@ namespace extend\oauth;
 /**
  * bool
  * 30024167@qq.com
- * Github oath登陆
+ * Gitee oath登陆
  * https://gitee.com/api/v5/oauth_doc
+ * https://gitee.com/oauth/applications/1148
  */
 class Gitee
 {
