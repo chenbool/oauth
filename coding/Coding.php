@@ -3,12 +3,13 @@ namespace extend\oauth;
 /**
  * bool
  * 30024167@qq.com
- * oschina oauth登陆
- * https://www.oschina.net/openapi
+ * Coding oauth登陆
+ * https://coding.net
+ * https://coding.net/user/account/setting/applications
  */
-class Oschina
+class Coding
 {
-    protected $url              =   'https://www.oschina.net/action/openapi/';
+    protected $url              =   'https://coding.net/api/';
 	protected $client_id		=	'ada13e081d010bde17';
 	protected $client_secret	=	'45a66fafbf43c5769fa';
     protected $redirect_uri     =   'http://www.hengtonghui.cn';
@@ -24,13 +25,14 @@ class Oschina
 
 	// 第一步:获取 access_token 地址
 	public function get_access_token($code){
-        $url = $this->url."token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$redirect_uri}&client_secret={$this->client_secret}";
+        // https://coding.net/api/oauth/access_token?client_id={client_id}&client_secret={client_secret}&grant_type=authorization_code&code={code}
+        $url = $this->url."oauth/access_token?client_id={$this->client_id}&client_secret={$this->client_secret}&grant_type=authorization_code&code={$code}";
 		return $this->curl_post($url);
 	}
 
 	// 第二步:获取用户信息
 	public function get_userinfo($token){
-        $url = $this->url.'action/openapi/user?access_token'=.$token;
+        $url = $this->url.'current_user?access_token='=.$token;
 		return json_decode( $this->curl_get($url), true);
 	}
 
@@ -87,8 +89,8 @@ class Oschina
 /* 
 	//使用案例
 
-	use extend\oauth\Oschina;
-	$oschina = new Oschina();
-	$oschina->login($code);
+	use extend\oauth\Coding;
+	$coding = new Coding();
+	$coding->login($code);
 
  */
