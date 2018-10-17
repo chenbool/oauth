@@ -20,7 +20,7 @@ class Coding
 
 	// 快捷方法 直接登陆
 	public function login($code){
-		$url = $this->get_access_token($code);
+		$token = $this->get_access_token($code);
 		return $this->get_userinfo($token);
 	}
 
