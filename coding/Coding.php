@@ -20,8 +20,15 @@ class Coding
 
 	// 快捷方法 直接登陆
 	public function login($code){
-		$token = $this->get_access_token($code);
-		return $this->get_userinfo($token);
+        $token = $this->get_access_token($code);
+        $token = json_decode($token,true);
+        if( isset($token['access_token']) ){
+            return $this->get_userinfo($token['access_token']);
+        }else{
+            return false;
+        }
+        
+        return $this->get_userinfo($token);
 	}
 
 	// 第一步:获取 access_token 地址
