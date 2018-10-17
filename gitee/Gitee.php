@@ -19,9 +19,8 @@ class Gitee
 	// 快捷方法 直接登陆
 	public function login($code){
 		$token = $this->get_access_token($code);
-        dump( $token );
-
-		return $this->get_userinfo($token);
+        $token = json_decode($token,true);
+        return $this->get_userinfo($token['access_token']);
 	}
 
 	// 第一步:获取 access_token 地址
