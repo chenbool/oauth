@@ -33,7 +33,7 @@ class Coding
 
 	// 第二步:获取用户信息
 	public function get_userinfo($token){
-        $url = $this->url.'current_user?access_token='=.$token;
+        $url = $this->url.'current_user?access_token='.$token;
 		return json_decode( $this->curl_get($url), true);
 	}
 
