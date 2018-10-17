@@ -5,7 +5,8 @@ namespace extend\oauth;
  * 30024167@qq.com
  * Coding oauth登陆
  * https://coding.net
- * https://coding.net/user/account/setting/applications
+ * https://coding.net/user/account/setting/applications/227798
+ * https://coding.net/help/doc/account/oauth.html
  */
 class Coding
 {
