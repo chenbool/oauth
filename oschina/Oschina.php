@@ -18,19 +18,24 @@ class Oschina
 
 	// 快捷方法 直接登陆
 	public function login($code){
-		$url = $this->get_access_token($code);
-		return $this->get_userinfo($token);
+		$token = $this->get_access_token($code);
+        $token = json_decode($token,true);
+        if( isset($token['access_token']) ){
+            return $this->get_userinfo($token['access_token']);
+        }else{
+            return false;
+        }
 	}
 
 	// 第一步:获取 access_token 地址
 	public function get_access_token($code){
-        $url = $this->url."token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$redirect_uri}&client_secret={$this->client_secret}";
+        $url = $this->url."token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$this->redirect_uri}&client_secret={$this->client_secret}";
 		return $this->curl_post($url);
 	}
 
 	// 第二步:获取用户信息
 	public function get_userinfo($token){
-        $url = $this->url.'action/openapi/user?access_token'=.$token;
+        $url = $this->url.'user?access_token='.$token;
 		return json_decode( $this->curl_get($url), true);
 	}
 
