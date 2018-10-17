@@ -18,13 +18,15 @@ class Gitee
 
 	// 快捷方法 直接登陆
 	public function login($code){
-		$url = $this->get_access_token($code);
+		$token = $this->get_access_token($code);
+        dump( $token );
+
 		return $this->get_userinfo($token);
 	}
 
 	// 第一步:获取 access_token 地址
 	public function get_access_token($code){
-		$url = "https://gitee.com/oauth/token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$redirect_uri}&client_secret={$this->client_secret}";
+		$url = "https://gitee.com/oauth/token?grant_type=authorization_code&code={$code}&client_id={$this->client_id}&redirect_uri={$this->redirect_uri}&client_secret={$this->client_secret}";
 		return $this->curl_post($url);
 	}
 
